@@ -5,6 +5,22 @@ import axios from 'axios/dist/node/axios.cjs';
 
 export default async function handler(req, res) {
   try {
+    // ...your existing code...
+
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+
+    return res.status(200).json({ time: duration });
+  } catch (err) {
+    console.error('Drive time error:', err);
+    return res.status(500).json({ error: 'Could not fetch drive time' });
+  }
+}
+
+export default async function handler(req, res) {
+  try {
     const url = 'https://maps.googleapis.com/maps/api/directions/json';
     const params = {
       origin: process.env.HOME_ADDRESS,
