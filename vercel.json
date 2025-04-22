@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/drive-time.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/drive-time", "dest": "/api/drive-time.js" }
+  ]
+}
