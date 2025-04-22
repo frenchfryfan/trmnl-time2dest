@@ -1,12 +1,6 @@
 import axios from 'axios/dist/node/axios.cjs';
 
-//const HOME = '123 Main St, San Francisco, CA';
-//const WORK = '456 Mission St, San Francisco, CA';
-
 export default async function handler(req, res) {
-  try {
-    
-   export default async function handler(req, res) {
   try {
     const url = 'https://maps.googleapis.com/maps/api/directions/json';
     const params = {
@@ -15,6 +9,11 @@ export default async function handler(req, res) {
       departure_time: 'now',
       key: process.env.GOOGLE_API_KEY
     };
+
+    if (!params.key) {
+      console.error('Missing GOOGLE_API_KEY');
+      return res.status(500).json({ error: 'GOOGLE_API_KEY is missing' });
+    }
 
     const response = await axios.get(url, { params });
 
@@ -26,12 +25,7 @@ export default async function handler(req, res) {
     }
 
     const duration = response.data.routes[0].legs[0].duration.text;
-    return res.status(200).json({ time: duration });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Could not fetch drive time' });
-  }
-}
+
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
@@ -39,9 +33,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ time: duration });
   } catch (err) {
-    console.error('Drive time error:', err);
+    console.error('Drive time error:', err.response?.data || err.message || err);
     return res.status(500).json({ error: 'Could not fetch drive time' });
   }
 }
-
-
