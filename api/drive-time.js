@@ -2,7 +2,7 @@ import axios from 'axios/dist/node/axios.cjs';
 
 export default async function handler(req, res) {
   try {
-    const directionsurl = 'https://maps.googleapis.com/maps/api/directions/json';
+    const directionsUrl = 'https://maps.googleapis.com/maps/api/directions/json';
     const staticMapBaseUrl = 'https://maps.googleapis.com/maps/api/staticmap';
     
     const params = {
