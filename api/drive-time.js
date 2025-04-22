@@ -30,7 +30,7 @@ export default async function handler(req, res) {
     const duration = route.legs[0].duration.text;
     const polyline = route.overview_polyline?.points;
 
-    const mapUrl = `${staticMapBaseUrl}?size=600x300&path=enc:${polyline}&markers=color:green|${HOME}&markers=color:red|${WORK}&key=${params.key}`;
+    const mapUrl = `${staticMapBaseUrl}?size=600x300&path=enc:${polyline}&markers=color:green|${HOME_ADDRESS}&markers=color:red|${WORK_ADDRESS}&key=${params.key}`;
 
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.setHeader('Pragma', 'no-cache');
