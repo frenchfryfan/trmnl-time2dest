@@ -7,8 +7,8 @@ export default async function handler(req, res) {
   try {
     const url = 'https://maps.googleapis.com/maps/api/directions/json';
     const params = {
-      origin: HOME_ADDRESS,
-      destination: WORK_ADDRESS,
+      origin: process.env.HOME_ADDRESS,
+      destination: process.env.WORK_ADDRESS,
       departure_time: 'now',
       key: process.env.GOOGLE_API_KEY
     };
