@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios/dist/node/axios.cjs';
 
 const HOME = '123 Main St, San Francisco, CA';
 const WORK = '456 Mission St, San Francisco, CA';
